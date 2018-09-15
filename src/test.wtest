@@ -1,0 +1,42 @@
+import example.*
+
+describe "Rolando tiene como hechizo preferido ´espectro malefico´ y este tiene como su nombre ´espectro malefico´" {
+	fixture {
+		rolando.cambiarHechizoPreferido(espectroMalefico)
+		espectroMalefico.cambiarNombre("Espectro Malefico")
+	}
+	
+	test "el nivel de hechiceria de rolando es 56" {
+		assert.equals(56, rolando.nivelDeHechiceria())
+	}
+	
+	test "cuando se cambia el nombre de espectroMalefico a ´espectro superrecontramalefico muajajaja´ rolando tiene un
+		  nivel de hechiceria de 125" {
+		espectroMalefico.cambiarNombre("espectro superrecontramalefico muajajaja")
+		assert.equals(125, rolando.nivelDeHechiceria())
+	}
+	
+	test "cuando se cambia el hechizo favorito de rolando a ´hechizo basico´, su nivel de hechiceria es de 35" {
+		rolando.cambiarHechizoPreferido(hechizoBasico)
+		assert.equals(35, rolando.nivelDeHechiceria())
+	}
+	
+	test "Cuando ocurre un eclipse, el nivel de hechiceria de rolando es de 61" {
+		fuerzaOscura.eclipse()
+		assert.equals(61, rolando.nivelDeHechiceria())
+	}
+	
+	test "el espectro malefico es poderoso" {
+		assert.that(espectroMalefico.esHechizoPoderoso())
+	}
+	
+	test "cuando el espectro malefico tiene como nombre ´pepe´, no es poderoso" {
+		espectroMalefico.cambiarNombre("pepe")
+		assert.that(!espectroMalefico.esHechizoPoderoso())
+	}
+	
+	test "el hechizo basico no es poderoso" {
+		assert.that(!hechizoBasico.esHechizoPoderoso())
+	}
+	
+}
